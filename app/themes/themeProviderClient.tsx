@@ -1,7 +1,9 @@
 "use client";
 import { setCookie } from "cookies-next";
 import {
+  Dispatch,
   ReactNode,
+  SetStateAction,
   createContext,
   useContext,
   useEffect,
@@ -11,7 +13,7 @@ import {
 export type Themes = "dark" | "light" | "none";
 type ThemeContextProps = {
   theme: Themes;
-  setTheme: (theme: Themes) => void;
+  setTheme: Dispatch<SetStateAction<Themes>>;
 };
 type ThemeProviderProps = {
   children: ReactNode;
