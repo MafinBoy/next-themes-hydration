@@ -1,4 +1,5 @@
-import { ThemeProvider } from "./themes/themeProvider";
+import { ThemedHTML } from "./themes/themedHTML";
+import "./globals.scss";
 
 export const metadata = {
   title: "Create Next App",
@@ -11,10 +12,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body>
-        <ThemeProvider>{children}</ThemeProvider>
-      </body>
-    </html>
+    <ThemedHTML lang="en">
+      <body>{children}</body>
+    </ThemedHTML>
   );
 }

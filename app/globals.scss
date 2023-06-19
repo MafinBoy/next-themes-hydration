@@ -1,0 +1,15 @@
+body {
+  background-color: white;
+}
+p {
+  color: black;
+}
+
+[data-theme="dark"] {
+  body {
+    background-color: #222;
+  }
+  p {
+    color: white;
+  }
+}

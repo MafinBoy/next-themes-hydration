@@ -1,8 +1,9 @@
 "use client";
 import { setCookie } from "cookies-next";
 import {
+  DetailedHTMLProps,
   Dispatch,
-  ReactNode,
+  HtmlHTMLAttributes,
   SetStateAction,
   createContext,
   useContext,
@@ -10,28 +11,29 @@ import {
   useState,
 } from "react";
 
-export type Themes = "dark" | "light" | "none";
+export type Themes = "dark" | "light";
 type ThemeContextProps = {
   theme: Themes;
   setTheme: Dispatch<SetStateAction<Themes>>;
 };
 type ThemeProviderProps = {
-  children: ReactNode;
-  hydrationTheme?: Themes;
-};
+  hydrationTheme: Themes;
+} & DetailedHTMLProps<HtmlHTMLAttributes<HTMLHtmlElement>, HTMLHtmlElement>;
 
 const ThemeContext = createContext<ThemeContextProps | undefined>(undefined);
 const defaultContext: ThemeContextProps = {
-  theme: "none",
+  theme: "light",
   setTheme: (_) => {
-    throw new Error("You have to add the <ThemeProvider> to your layout.tsx");
+    throw new Error(
+      "In your layout.tsx replace the <html> tag with <ThemedHTML>"
+    );
   },
 };
 export const useTheme = () => useContext(ThemeContext) ?? defaultContext;
 
-export const ThemeProviderClient = ({
-  children,
-  hydrationTheme = "none",
+export const ThemedHTMLClient = ({
+  hydrationTheme,
+  ...props
 }: ThemeProviderProps) => {
   const [theme, setTheme] = useState<Themes>(hydrationTheme);
 
@@ -41,7 +43,7 @@ export const ThemeProviderClient = ({
 
   return (
     <ThemeContext.Provider value={{ theme, setTheme }}>
-      {children}
+      <html {...props} data-theme={theme} />
     </ThemeContext.Provider>
   );
 };

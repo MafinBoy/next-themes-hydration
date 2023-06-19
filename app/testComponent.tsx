@@ -1,5 +1,5 @@
 "use client";
-import { useTheme } from "./themes/themeProviderClient";
+import { useTheme } from "./themes/themedHTMLClient";
 
 export const TestComponent = () => {
   const { theme, setTheme } = useTheme();
@@ -10,7 +10,9 @@ export const TestComponent = () => {
       <br />
       The current theme is {theme}
       <br />
-      <button onClick={() => setTheme(theme === "light" ? "dark" : "light")}>Change theme</button>
+      <button onClick={() => setTheme(theme === "light" ? "dark" : "light")}>
+        Change theme
+      </button>
     </p>
   );
 };
