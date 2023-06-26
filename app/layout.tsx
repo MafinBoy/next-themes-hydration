@@ -1,5 +1,5 @@
 import { ThemedHTML } from "./themes/themedHTML";
-import "./globals.scss";
+import "./globals.css";
 
 export const metadata = {
   title: "Create Next App",
@@ -13,7 +13,7 @@ export default function RootLayout({
 }) {
   return (
     <ThemedHTML lang="en">
-      <body>{children}</body>
+      <body className="dark:bg-slate-800 dark:text-white">{children}</body>
     </ThemedHTML>
   );
 }
